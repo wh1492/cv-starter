@@ -5,7 +5,7 @@ if ( ! function_exists( 'cv_info_meta_box' ) ) {
     add_action( 'admin_menu', 'cv_info_meta_box' );
 
     function cv_info_meta_box() {
-        $screens = array( 'post', 'cv_study', 'cv_experience' );
+        $screens = array( 'cv_study', 'cv_experience' );
         add_meta_box(
             'cv_info_metabox', // metabox ID
             'Additional Info', // title
@@ -76,7 +76,7 @@ if ( ! function_exists( 'cv_info_save_meta' ) ) {
     
         // define your own post type here
         // if( $post->post_type != 'page' ) {
-        if( $post->post_type != 'cv_experience' or $post->post_type != 'cv_study' ) {
+        if( $post->post_type != 'cv_experience' and $post->post_type != 'cv_study' ) {
             return $post_id;
         }
     
@@ -117,12 +117,12 @@ if ( ! function_exists( 'cv_skill_meta_box' ) ) {
     add_action( 'admin_menu', 'cv_skill_meta_box' );
 
     function cv_skill_meta_box() {
-        $screens = array( 'skill' );
+        $screens = array( 'cv_skill' );
         add_meta_box(
             'cv_info_metabox', // metabox ID
             'Additional Info', // title
             'cv_skill_metabox_callback', // callback function
-            'skill', // post type or post types in array
+            'cv_skill', // post type or post types in array
             // $screens, // post type or post types in array
             'normal', // position (normal, side, advanced)
             'default' // priority (default, low, high, core)

@@ -12,20 +12,11 @@ function cv_get_contents( $data ) {
 
     // get configuration
 
-    $cv_person_name = get_option('cv_person_name');
-    $cv_person_carrer = get_option('cv_person_carrer');
-    $cv_person_description = get_option('cv_person_description');
+    $cv_person_name = get_option( 'cv_person_name' );
+    $cv_person_carrer = get_option( 'cv_person_carrer' );
+    $cv_person_description = get_option( 'cv_person_description' );
 
-    if( !empty( $cv_person_name ) && !empty( $cv_person_carrer ) && !empty( $cv_person_description )) {
-        $cv_person_data = array( 
-            'name' => $cv_person_name, 
-            'carrer' => $cv_person_carrer, 
-            'description' => $cv_person_description 
-        );
-        $cv_data[] = $cv_person_data;
-    }
-
-
+    
     // GET all the EXPERIENCIES from DB
     $args = array(
         'post_type' => 'cv_experience',
@@ -38,14 +29,14 @@ function cv_get_contents( $data ) {
         return null;
     } else {
         $post_name = get_post_type_object( 'cv_experience' );
-        $cv_exp_slug = trim($post_name->name,"cv_");
+        $cv_exp_slug = trim( $post_name->name,"cv_" );
         // $post_name->rewrite->slug
-        $cv_exper_obj[] = array(
+        $cv_exper_obj = array(
             'name' => $post_name->labels->menu_name , 
             'slug' => $cv_exp_slug , 
-            'posts'=>  $cv_experience->posts
+            'posts'=> $cv_experience->posts
         ) ;
-        $cv_data[] = array( 'experiencies' => $cv_exper_obj );
+      //  $cv_data[] = array( 'experiencies' => $cv_exper_obj );
     }
 
     
@@ -61,14 +52,14 @@ function cv_get_contents( $data ) {
         return null;
     } else {
         $post_name = get_post_type_object( 'cv_study' );
-        $cv_study_slug = trim($post_name->name,"cv_");
+        $cv_study_slug = trim( $post_name->name,"cv_" );
         // $post_name->rewrite->slug
-        $cv_study_obj[] = array(
+        $cv_study_obj = array(
             'name' => $post_name->labels->menu_name , 
             'slug' => $cv_study_slug , 
-            'posts'=>  $cv_study->posts
+            'posts'=> $cv_study->posts
         ) ;
-        $cv_data[] = array( 'studies' => $cv_study_obj );
+       // $cv_data[] = array( 'studies' => $cv_study_obj );
     }
 
     
@@ -84,14 +75,14 @@ function cv_get_contents( $data ) {
         return null;
     } else {
         $post_name = get_post_type_object( 'cv_language' );
-        $cv_language_slug = trim($post_name->name,"cv_");
+        $cv_language_slug = trim( $post_name->name,"cv_" );
         // $post_name->rewrite->slug
-        $cv_language_obj[] = array(
+        $cv_language_obj = array(
             'name' => $post_name->labels->menu_name , 
             'slug' => $cv_language_slug , 
-            'posts'=>  $cv_language->posts
+            'posts'=> $cv_language->posts
         ) ;
-        $cv_data[] = array( 'languages' => $cv_language_obj );
+      //  $cv_data[] = array( 'languages' => $cv_language_obj );
     }
 
 
@@ -107,14 +98,14 @@ function cv_get_contents( $data ) {
         return null;
     } else {
         $post_name = get_post_type_object( 'cv_skill' );
-        $cv_skill_slug = trim($post_name->name,"cv_");
+        $cv_skill_slug = trim( $post_name->name,"cv_" );
         // $post_name->rewrite->slug
-        $cv_skill_obj[] = array(
+        $cv_skill_obj = array(
             'name' => $post_name->labels->menu_name , 
             'slug' => $cv_skill_slug , 
-            'posts'=>  $cv_skill->posts
+            'posts'=> $cv_skill->posts
         ) ;
-        $cv_data[] = array( 'skills' => $cv_skill_obj );
+      //  $cv_data[] = array( 'skills' => $cv_skill_obj );
     }
 
 
@@ -130,14 +121,14 @@ function cv_get_contents( $data ) {
         return null;
     } else {
         $repo_name = get_post_type_object( 'cv_repository' );
-        $cv_repository_slug = trim($repo_name->name,"cv_");
+        $cv_repository_slug = trim( $repo_name->name,"cv_" );
         // $repo_name->rewrite->slug
-        $cv_repository_obj[] = array(
+        $cv_repository_obj = array(
             'name' => $repo_name->labels->menu_name , 
             'slug' => $cv_repository_slug , 
-            'posts'=>  $cv_repository->posts
+            'posts'=> $cv_repository->posts
         ) ;
-        $cv_data[] = array( 'repositories' => $cv_repository_obj );
+       // $cv_data[] = array( 'repositories' => $cv_repository_obj );
     }
 
 
@@ -153,25 +144,34 @@ function cv_get_contents( $data ) {
         return null;
     } else {
         $post_name = get_post_type_object( 'cv_portafolio' );
-        $cv_portafolio_slug = trim($post_name->name,"cv_");
+        $cv_portafolio_slug = trim( $post_name->name,"cv_" );
         // $post_name->rewrite->slug
-        $cv_portafolio_obj[] = array(
+        $cv_portafolio_obj = array(
             'name' => $post_name->labels->menu_name , 
             'slug' => $cv_portafolio_slug , 
-            'posts'=>  $cv_portafolio->posts
+            'posts'=> $cv_portafolio->posts
         ) ;
-        $cv_data[] = array( 'portafolio' => $cv_portafolio_obj );
+     //   $cv_data[] = array( 'portafolio' => $cv_portafolio_obj );
     }
 
     // $posts = get_posts( array(
     //   'author' => $data['id'],
     // ) );
    
-    // if ( empty( $posts ) ) {
-    //   return null;
-    // } else {
-    //     $cv_data[] = $posts;
-    // }
+   
+    $all_data = array(
+        'name' => $cv_person_name, 
+        'carrer' => $cv_person_carrer, 
+        'description' => $cv_person_description,
+        'experiencies' => $cv_exper_obj,
+        'studies' => $cv_study_obj,
+        'languages' => $cv_language_obj,
+        'skills' => $cv_skill_obj,
+        'repositories' => $cv_repository_obj,
+        'portafolio' => $cv_portafolio_obj
+    );
+
+    $cv_data = $all_data;
    
     return $cv_data;
 }
