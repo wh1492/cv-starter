@@ -58,4 +58,3 @@ function myplugin_options_page() {
 ?>
 <?php
  add_action( 'admin_init', 'myplugin_register_settings' );
-

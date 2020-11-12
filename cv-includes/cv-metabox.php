@@ -119,7 +119,7 @@ if ( ! function_exists( 'cv_skill_meta_box' ) ) {
     function cv_skill_meta_box() {
         $screens = array( 'cv_skill' );
         add_meta_box(
-            'cv_info_metabox', // metabox ID
+            'cv_skill_metabox', // metabox ID
             'Additional Info', // title
             'cv_skill_metabox_callback', // callback function
             'cv_skill', // post type or post types in array
@@ -170,7 +170,7 @@ if ( ! function_exists( 'cv_skill_save_meta' ) ) {
     
         // define your own post type here
         // if( $post->post_type != 'page' ) {
-        if( $post->post_type != 'skill' ) {
+        if( $post->post_type != 'cv_skill' ) {
             return $post_id;
         }    
        
@@ -201,7 +201,7 @@ if ( ! function_exists( 'cv_repository_meta_box' ) ) {
     function cv_repository_meta_box() {
         $screens = array( 'repository' );
         add_meta_box(
-            'cv_info_metabox', // metabox ID
+            'cv_repository_metabox', // metabox ID
             'Additional Info', // title
             'cv_repository_metabox_callback', // callback function
             'repository', // post type or post types in array
@@ -252,7 +252,7 @@ if ( ! function_exists( 'cv_repository_save_meta' ) ) {
     
         // define your own post type here
         // if( $post->post_type != 'page' ) {
-        if( $post->post_type != 'repository' ) {
+        if( $post->post_type != 'cv_repository' ) {
             return $post_id;
         }    
        

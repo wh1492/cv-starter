@@ -100,10 +100,22 @@ function cv_get_contents( $data ) {
         $post_name = get_post_type_object( 'cv_skill' );
         $cv_skill_slug = trim( $post_name->name,"cv_" );
         // $post_name->rewrite->slug
+
+        $skillz = $cv_skill->posts;
+        foreach($skillz as $single_skill){
+            $range = get_post_meta( $single_skill->ID, 'cv_skill_range', true );
+            $skill_build[] = array(
+                'name' => $single_skill->post_title,
+                'content' => $single_skill->post_content,
+                'skill_range' => $range
+            );
+        }
+
         $cv_skill_obj = array(
             'name' => $post_name->labels->menu_name , 
-            'slug' => $cv_skill_slug , 
-            'posts'=> $cv_skill->posts
+            'slug' => $cv_skill_slug,
+            'posts' =>  $skill_build
+            // 'posts'=> $cv_skill->posts
         ) ;
       //  $cv_data[] = array( 'skills' => $cv_skill_obj );
     }
