@@ -2,9 +2,9 @@
 
 function myplugin_register_settings()
 {
-  add_option('cv_person_name', 'This is my option value.');
-  add_option('cv_person_carrer', 'This is my option value.');
-  add_option('cv_person_description', 'This is my option value.');
+  add_option('cv_person_name', '');
+  add_option('cv_person_carrer', '');
+  add_option('cv_person_description', '');
   register_setting('myplugin_options_group', 'cv_person_name', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_carrer', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_description', 'myplugin_callback');

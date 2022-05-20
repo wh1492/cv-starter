@@ -199,13 +199,13 @@ if ( ! function_exists( 'cv_repository_meta_box' ) ) {
     add_action( 'admin_menu', 'cv_repository_meta_box' );
 
     function cv_repository_meta_box() {
-        $screens = array( 'repository' );
+        $screens = array( 'cv_repository' );
         add_meta_box(
             'cv_repository_metabox', // metabox ID
             'Additional Info', // title
             'cv_repository_metabox_callback', // callback function
-            'repository', // post type or post types in array
-            // $screens, // post type or post types in array
+           // 'page', // post type or post types in array
+             $screens, // post type or post types in array
             'normal', // position (normal, side, advanced)
             'default' // priority (default, low, high, core)
         );
