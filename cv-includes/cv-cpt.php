@@ -268,7 +268,7 @@ if ( ! function_exists( 'cv_cpt_repository' ) ) {
 
 
 /**
- * REPOSITORY
+ * PORTFOLIO
  */
 
 if ( ! function_exists( 'cv_cpt_portafolio' ) ) {

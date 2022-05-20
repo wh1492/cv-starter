@@ -16,7 +16,7 @@ http://demoserver.url/wp-json/cv/v1
 ```
 
 ## Todos
-
+ - Create CUSTOM blocks in admin menu for the plugin
  - Add custom metaboxes to the loop
  - In future create a GraphQL output
 
