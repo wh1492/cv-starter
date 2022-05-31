@@ -201,7 +201,8 @@ function cv_get_contents($data)
       $url_repo = get_post_meta( $single_repo->ID, 'cv_repository_url', true );
       $repo_build[] = array(
         'name' => $single_repo->post_title,
-        'url_repository' => $url_repo
+        'url_repository' => $url_repo,
+        // 'post_type' => $single_repo->post_type
       );
     }
     // $repo_name->rewrite->slug
@@ -209,7 +210,6 @@ function cv_get_contents($data)
       'name' => $repo_name->labels->menu_name,
       'slug' => $cv_repository_slug,
       'posts' => $repo_build
-     // 'url_repo' => 
     );
     // $cv_data[] = array( 'repositories' => $cv_repository_obj );
   }
@@ -228,12 +228,13 @@ function cv_get_contents($data)
     $post_name = get_post_type_object('cv_portafolio');
     $cv_portafolio_slug = trim($post_name->name, "cv_");
     // $post_name->rewrite->slug
-    $portafolioz =  $cv_repository->posts;
+    $portafolioz =  $cv_portafolio->posts;
     foreach($portafolioz as $single_porta) {
       $url_porta = get_post_meta( $single_porta->ID, 'cv_portafolio_url', true );
       $porta_build[] = array(
         'name' => $single_porta->post_title,
-        'url_portafolio' => $url_porta
+        'url_portafolio' => $url_porta,
+        // 'post_type' => $single_porta->post_type
       );
     }
 
@@ -242,7 +243,6 @@ function cv_get_contents($data)
       'slug' => $cv_portafolio_slug,
       'posts' => $porta_build
     );
-    //   $cv_data[] = array( 'portafolio' => $cv_portafolio_obj );
   }
 
   // $posts = get_posts( array(
