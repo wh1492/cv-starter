@@ -32,10 +32,25 @@ function cv_get_contents($data)
     $post_name = get_post_type_object('cv_experience');
     $cv_exp_slug = trim($post_name->name, "cv_");
     // $post_name->rewrite->slug
+
+    $experiencez = $cv_experience->posts;
+    foreach ($experiencez as $single_exp) {
+      $range = get_post_meta($single_exp->ID, 'cv_skill_range', true);
+      $exp_build[] = array(
+        'name' => $single_exp->post_title,
+        'content' => $single_exp->post_content,
+        'institution' => $single_exp->cv_institution,
+        'date_init' => $single_exp->cv_date_start,
+        'date_end' => $single_exp->cv_date_end,
+        'location' => $single_exp->cv_location,
+        // 'skill_range' => $range
+      );
+    }
     $cv_exper_obj = array(
       'name' => $post_name->labels->menu_name,
       'slug' => $cv_exp_slug,
-      'posts' => $cv_experience->posts
+      // 'posts' => $cv_experience->posts
+      'posts' => $exp_build
     );
     //  $cv_data[] = array( 'experiencies' => $cv_exper_obj );
   }
@@ -55,10 +70,25 @@ function cv_get_contents($data)
     $post_name = get_post_type_object('cv_study');
     $cv_study_slug = trim($post_name->name, "cv_");
     // $post_name->rewrite->slug
+
+    $studiez = $cv_study->posts;
+    foreach ($studiez as $single_study) {
+      $range = get_post_meta($single_study->ID, 'cv_skill_range', true);
+      $study_build[] = array(
+        'name' => $single_study->post_title,
+        'content' => $single_study->post_content,
+        'institution' => $single_study->cv_institution,
+        'date_init' => $single_study->cv_date_start,
+        'date_end' => $single_study->cv_date_end,
+        'location' => $single_study->cv_location,
+        // 'skill_range' => $range
+      );
+    }
+
     $cv_study_obj = array(
       'name' => $post_name->labels->menu_name,
       'slug' => $cv_study_slug,
-      'posts' => $cv_study->posts
+      'posts' => $study_build
     );
     // $cv_data[] = array( 'studies' => $cv_study_obj );
   }
@@ -86,14 +116,13 @@ function cv_get_contents($data)
     //  $cv_data[] = array( 'languages' => $cv_language_obj );
   }
 
-
   // GET all the SKILLS from DB
   $args = array(
     'post_type' => 'cv_skill',
     'post_status' => 'publish',
     'posts_per_page' => -1
   );
-  // verificar rutina de pinch para agregar custom metaboxes
+  // verificar rutina para agregar custom metaboxes
   $cv_skill = new WP_Query($args);
   if (empty($cv_skill)) {
     return null;
@@ -119,6 +148,40 @@ function cv_get_contents($data)
       // 'posts'=> $cv_skill->posts
     );
     //  $cv_data[] = array( 'skills' => $cv_skill_obj );
+  }
+
+  // GET all the LANGUAGES from DB
+  $args = array(
+    'post_type' => 'cv_language',
+    'post_status' => 'publish',
+    'posts_per_page' => -1
+  );
+  // verificar rutina para agregar custom metaboxes
+  $cv_language = new WP_Query($args);
+  if (empty($cv_language)) {
+    return null;
+  } else {
+    $post_name = get_post_type_object('cv_language');
+    $cv_language_slug = trim($post_name->name, "cv_");
+    // $post_name->rewrite->slug
+
+    $langz = $cv_language->posts;
+    foreach ($langz as $single_lang) {
+      $range_lang = get_post_meta($single_lang->ID, 'cv_language_range', true);
+      $lang_build[] = array(
+        'name' => $single_lang->post_title,
+        // 'content' => $single_lang->post_content,
+        'lang_range' => $range_lang
+      );
+    }
+
+    $cv_language_obj = array(
+      'name' => $post_name->labels->menu_name,
+      'slug' => $cv_language_slug,
+      'posts' =>  $lang_build
+      // 'posts'=> $cv_language->posts
+    );
+    //  $cv_data[] = array( 'langs' => $cv_language_obj );
   }
 
 

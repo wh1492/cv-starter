@@ -308,7 +308,7 @@ if ( ! function_exists( 'cv_cpt_portafolio' ) ) {
             'label'                 => __( 'Portafolio', 'cv_domain' ),
             'description'           => __( 'Post Type Description', 'cv_domain' ),
             'labels'                => $labels,
-            'supports'              => array( 'title', 'editor' ),
+            'supports'              => array( 'title' ),
             'hierarchical'          => false,
             'public'                => true,
             'show_ui'               => true,
