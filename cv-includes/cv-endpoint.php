@@ -17,7 +17,6 @@ function cv_get_contents($data)
   $cv_person_carrer = get_option('cv_person_carrer');
   $cv_person_description = get_option('cv_person_description');
 
-
   // GET all the EXPERIENCIES from DB
   $args = array(
     'post_type' => 'cv_experience',
@@ -92,7 +91,6 @@ function cv_get_contents($data)
     );
     // $cv_data[] = array( 'studies' => $cv_study_obj );
   }
-
 
   // GET all the LANGUAGES from DB
   $args = array(
@@ -184,7 +182,6 @@ function cv_get_contents($data)
     //  $cv_data[] = array( 'langs' => $cv_language_obj );
   }
 
-
   // GET all the REPOSITORIES from DB
   $args = array(
     'post_type' => 'cv_repository',
@@ -201,10 +198,10 @@ function cv_get_contents($data)
     
     $repos =  $cv_repository->posts;
     foreach($repos as $single_repo) {
-      $url_repo = get_post_meta( $single_repo->ID, 'cv_repository_range', true );
+      $url_repo = get_post_meta( $single_repo->ID, 'cv_repository_url', true );
       $repo_build[] = array(
         'name' => $single_repo->post_title,
-        'repo_name' => $url_repo
+        'url_repository' => $url_repo
       );
     }
     // $repo_name->rewrite->slug
@@ -216,7 +213,6 @@ function cv_get_contents($data)
     );
     // $cv_data[] = array( 'repositories' => $cv_repository_obj );
   }
-
 
   // GET all the PORTAFOLIO from DB
   $args = array(
@@ -232,10 +228,19 @@ function cv_get_contents($data)
     $post_name = get_post_type_object('cv_portafolio');
     $cv_portafolio_slug = trim($post_name->name, "cv_");
     // $post_name->rewrite->slug
+    $portafolioz =  $cv_repository->posts;
+    foreach($portafolioz as $single_porta) {
+      $url_porta = get_post_meta( $single_porta->ID, 'cv_portafolio_url', true );
+      $porta_build[] = array(
+        'name' => $single_porta->post_title,
+        'url_portafolio' => $url_porta
+      );
+    }
+
     $cv_portafolio_obj = array(
       'name' => $post_name->labels->menu_name,
       'slug' => $cv_portafolio_slug,
-      'posts' => $cv_portafolio->posts
+      'posts' => $porta_build
     );
     //   $cv_data[] = array( 'portafolio' => $cv_portafolio_obj );
   }
@@ -262,11 +267,9 @@ function cv_get_contents($data)
   return $cv_data;
 }
 
-
 add_action('rest_api_init', 'cv_route_register');
 
-function cv_route_register()
-{
+function cv_route_register() {
   register_rest_route('cv', '/v1', array(
     'methods' => 'GET',
     'callback' => 'cv_get_contents',
