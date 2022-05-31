@@ -107,7 +107,7 @@ function cv_get_contents($data)
       $range = get_post_meta($single_skill->ID, 'cv_skill_range', true);
       $skill_build[] = array(
         'name' => $single_skill->post_title,
-        'content' => $single_skill->post_content,
+        // 'content' => $single_skill->post_content,
         'skill_range' => $range
       );
     }
@@ -135,11 +135,21 @@ function cv_get_contents($data)
   } else {
     $repo_name = get_post_type_object('cv_repository');
     $cv_repository_slug = trim($repo_name->name, "cv_");
+    
+    $repos =  $cv_repository->posts;
+    foreach($repos as $single_repo) {
+      $url_repo = get_post_meta( $single_repo->ID, 'cv_repository_range', true );
+      $repo_build[] = array(
+        'name' => $single_repo->post_title,
+        'repo_name' => $url_repo
+      );
+    }
     // $repo_name->rewrite->slug
     $cv_repository_obj = array(
       'name' => $repo_name->labels->menu_name,
       'slug' => $cv_repository_slug,
-      'posts' => $cv_repository->posts
+      'posts' => $repo_build
+     // 'url_repo' => 
     );
     // $cv_data[] = array( 'repositories' => $cv_repository_obj );
   }

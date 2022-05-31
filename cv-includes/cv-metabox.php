@@ -213,7 +213,7 @@ if ( ! function_exists( 'cv_repository_meta_box' ) ) {
 
     function cv_repository_metabox_callback( $post ) {
     
-        $cv_repository_range = get_post_meta( $post->ID, 'cv_repository_range', true );
+        $cv_repository_url = get_post_meta( $post->ID, 'cv_repository_url', true );
     
         // nonce, actually I think it is not necessary here
         wp_nonce_field( 'urlrandomstr', '_urlnonce' );
@@ -221,8 +221,8 @@ if ( ! function_exists( 'cv_repository_meta_box' ) ) {
         echo '<table class="form-table">
             <tbody>
                 <tr>
-                    <th><label for="cv_repository_range">URL Repository</label></th>
-                    <td><input type="url" id="cv_repository_range" name="cv_repository_range" value="' . esc_attr( $cv_repository_range ) . '" class="regular-text"></td>
+                    <th><label for="cv_repository_url">URL Repository</label></th>
+                    <td><input type="url" id="cv_repository_url" name="cv_repository_url" value="' . esc_attr( $cv_repository_url ) . '" class="regular-text"></td>
                 </tr>
             </tbody>
         </table>';
@@ -257,10 +257,10 @@ if ( ! function_exists( 'cv_repository_save_meta' ) ) {
         }    
        
         //
-        if( isset( $_POST[ 'cv_repository_range' ] ) ) {
-            update_post_meta( $post_id, 'cv_repository_range', sanitize_text_field( $_POST[ 'cv_repository_range' ] ) );
+        if( isset( $_POST[ 'cv_repository_url' ] ) ) {
+            update_post_meta( $post_id, 'cv_repository_url', sanitize_text_field( $_POST[ 'cv_repository_url' ] ) );
         } else {
-            delete_post_meta( $post_id, 'cv_repository_range' );
+            delete_post_meta( $post_id, 'cv_repository_url' );
         }
     
         return $post_id;
