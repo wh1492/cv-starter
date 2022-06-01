@@ -16,6 +16,9 @@ function cv_get_contents($data)
   $cv_person_name = get_option('cv_person_name');
   $cv_person_carrer = get_option('cv_person_carrer');
   $cv_person_description = get_option('cv_person_description');
+  $cv_person_picture = get_option('cv_person_picture');
+  $cv_person_picture = wp_get_attachment_image_src( $cv_person_picture , 'large', true);
+  // wp_get_attachment_image_src( $image_id ) 
 
   // GET all the EXPERIENCIES from DB
   $args = array(
@@ -254,6 +257,7 @@ function cv_get_contents($data)
     'name' => $cv_person_name,
     'carrer' => $cv_person_carrer,
     'description' => $cv_person_description,
+    'picture' => $cv_person_picture,
     'experiencies' => $cv_exper_obj,
     'studies' => $cv_study_obj,
     'languages' => $cv_language_obj,
