@@ -20,6 +20,12 @@ function cv_get_contents($data)
   $cv_person_picture = wp_get_attachment_image_src( $cv_person_picture , 'large', true);
   // wp_get_attachment_image_src( $image_id ) 
 
+  
+  $cv_person_mail = get_option('cv_person_mail');
+  $cv_person_phone = get_option('cv_person_phone');
+  $cv_person_linkedin = get_option('cv_person_linkedin');
+  $cv_person_skype = get_option('cv_person_skype');
+
   // GET all the EXPERIENCIES from DB
   $args = array(
     'post_type' => 'cv_experience',
@@ -252,11 +258,19 @@ function cv_get_contents($data)
   //   'author' => $data['id'],
   // ) );
 
+  $cv_person_social_obj = array(
+    'mail' => $cv_person_mail,
+    'phone' => $cv_person_phone,
+    'linkedin' => $cv_person_linkedin,
+    'skype' => $cv_person_skype,
+  );
+
 
   $all_data = array(
     'name' => $cv_person_name,
     'carrer' => $cv_person_carrer,
     'description' => $cv_person_description,
+    'social' => $cv_person_social_obj,
     'picture' => $cv_person_picture,
     'experiencies' => $cv_exper_obj,
     'studies' => $cv_study_obj,

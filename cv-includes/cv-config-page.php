@@ -5,10 +5,18 @@ function myplugin_register_settings()
   add_option('cv_person_name', '');
   add_option('cv_person_carrer', '');
   add_option('cv_person_description', '');
+  add_option('cv_person_mail', '');
+  add_option('cv_person_phone', '');
+  add_option('cv_person_linkedin', '');
+  add_option('cv_person_skype', '');
   add_option('cv_person_picture', '');
   register_setting('myplugin_options_group', 'cv_person_name', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_carrer', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_description', 'myplugin_callback');
+  register_setting('myplugin_options_group', 'cv_person_mail', 'myplugin_callback');
+  register_setting('myplugin_options_group', 'cv_person_phone', 'myplugin_callback');
+  register_setting('myplugin_options_group', 'cv_person_linkedin', 'myplugin_callback');
+  register_setting('myplugin_options_group', 'cv_person_skype', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_picture', 'myplugin_callback');
 }
 
@@ -52,20 +60,14 @@ function myplugin_options_page()
               <input class="large-text" type="text" id="cv_person_carrer" name="cv_person_carrer" value="<?php echo get_option('cv_person_carrer'); ?>" />
             </td>
           </tr>
+         
           <tr valign="top">
             <th scope="row"><label for="cv_person_description"><?php _e('Personal Description:', 'cv_domain'); ?></label></th>
             <td>
               <textarea style="width:100%;" rows="10" id="cv_person_description" name="cv_person_description"><?php echo get_option('cv_person_description'); ?></textarea>
             </td>
           </tr>
-          <!--
-          <tr valign="top">
-            <th scope="row"><label for="cv_person_picture"><?php _e('Personal Picture:', 'cv_domain'); ?></label></th>
-            <td>
-              <textarea style="width:100%;" rows="10" id="cv_person_picture" name="cv_person_picture"><?php echo get_option('cv_person_picture'); ?></textarea>
-            </td>
-          </tr>
-          -->
+
           <tr>  
             <th scope="row"><label for="cv_person_picture"><?php _e('Personal Picture:', 'cv_domain'); ?></label></th>
             <td >
@@ -85,8 +87,35 @@ function myplugin_options_page()
             </td>
           </tr>
         </tbody>
-
       </table>
+
+      <table class="form-table" role="presentation">
+        <tr valign="top">
+          <th scope="row"><label for="cv_person_mail"><?php _e('Email:', 'cv_domain'); ?></label></th>
+          <td>
+            <input class="large-text" type="text" id="cv_person_mail" name="cv_person_mail" value="<?php echo get_option('cv_person_mail'); ?>" />
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row"><label for="cv_person_phone"><?php _e('Phone:', 'cv_domain'); ?></label></th>
+          <td>
+            <input class="large-text" type="phone" id="cv_person_phone" name="cv_person_phone" value="<?php echo get_option('cv_person_phone'); ?>" />
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row"><label for="cv_person_linkedin"><?php _e('Linkedin:', 'cv_domain'); ?></label></th>
+          <td>
+            <input class="large-text" type="url" id="cv_person_linkedin" name="cv_person_linkedin" value="<?php echo get_option('cv_person_linkedin'); ?>" />
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row"><label for="cv_person_skype"><?php _e('Skype:', 'cv_domain'); ?></label></th>
+          <td>
+            <input class="large-text" type="text" id="cv_person_skype" name="cv_person_skype" value="<?php echo get_option('cv_person_skype'); ?>" />
+          </td>
+        </tr>
+      </table>
+
       <p class="submit"><?php submit_button(); ?></p>
 
     </form>
