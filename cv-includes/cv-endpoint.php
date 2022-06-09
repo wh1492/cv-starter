@@ -25,6 +25,7 @@ function cv_get_contents($data)
   $cv_person_phone = get_option('cv_person_phone');
   $cv_person_linkedin = get_option('cv_person_linkedin');
   $cv_person_skype = get_option('cv_person_skype');
+  $cv_person_location = get_option('cv_person_location');
 
   // GET all the EXPERIENCIES from DB
   $args = array(
@@ -45,6 +46,7 @@ function cv_get_contents($data)
     foreach ($experiencez as $single_exp) {
       $range = get_post_meta($single_exp->ID, 'cv_skill_range', true);
       $exp_build[] = array(
+        'id' => $single_exp->ID,
         'name' => $single_exp->post_title,
         'content' => $single_exp->post_content,
         'institution' => $single_exp->cv_institution,
@@ -83,6 +85,7 @@ function cv_get_contents($data)
     foreach ($studiez as $single_study) {
       $range = get_post_meta($single_study->ID, 'cv_skill_range', true);
       $study_build[] = array(
+        'id' => $single_study->ID,
         'name' => $single_study->post_title,
         'content' => $single_study->post_content,
         'institution' => $single_study->cv_institution,
@@ -142,6 +145,7 @@ function cv_get_contents($data)
     foreach ($skillz as $single_skill) {
       $range = get_post_meta($single_skill->ID, 'cv_skill_range', true);
       $skill_build[] = array(
+        'id' => $single_skill->ID,
         'name' => $single_skill->post_title,
         // 'content' => $single_skill->post_content,
         'skill_range' => $range
@@ -176,6 +180,7 @@ function cv_get_contents($data)
     foreach ($langz as $single_lang) {
       $range_lang = get_post_meta($single_lang->ID, 'cv_language_range', true);
       $lang_build[] = array(
+        'id' => $single_lang->ID,
         'name' => $single_lang->post_title,
         // 'content' => $single_lang->post_content,
         'lang_range' => $range_lang
@@ -209,6 +214,7 @@ function cv_get_contents($data)
     foreach($repos as $single_repo) {
       $url_repo = get_post_meta( $single_repo->ID, 'cv_repository_url', true );
       $repo_build[] = array(
+        'id' => $single_repo->ID,
         'name' => $single_repo->post_title,
         'url_repository' => $url_repo,
         // 'post_type' => $single_repo->post_type
@@ -241,6 +247,7 @@ function cv_get_contents($data)
     foreach($portafolioz as $single_porta) {
       $url_porta = get_post_meta( $single_porta->ID, 'cv_portafolio_url', true );
       $porta_build[] = array(
+        'id' => $single_porta->ID,
         'name' => $single_porta->post_title,
         'url_portafolio' => $url_porta,
         // 'post_type' => $single_porta->post_type
@@ -258,11 +265,12 @@ function cv_get_contents($data)
   //   'author' => $data['id'],
   // ) );
 
-  $cv_person_social_obj = array(
+  $cv_person_contact_obj = array(
     'mail' => $cv_person_mail,
     'phone' => $cv_person_phone,
     'linkedin' => $cv_person_linkedin,
     'skype' => $cv_person_skype,
+    'location' => $cv_person_location,
   );
 
 
@@ -270,7 +278,7 @@ function cv_get_contents($data)
     'name' => $cv_person_name,
     'carrer' => $cv_person_carrer,
     'description' => $cv_person_description,
-    'social' => $cv_person_social_obj,
+    'contact' => $cv_person_contact_obj,
     'picture' => $cv_person_picture,
     'experiencies' => $cv_exper_obj,
     'studies' => $cv_study_obj,

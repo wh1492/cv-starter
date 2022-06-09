@@ -9,6 +9,7 @@ function myplugin_register_settings()
   add_option('cv_person_phone', '');
   add_option('cv_person_linkedin', '');
   add_option('cv_person_skype', '');
+  add_option('cv_person_location', '');
   add_option('cv_person_picture', '');
   register_setting('myplugin_options_group', 'cv_person_name', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_carrer', 'myplugin_callback');
@@ -17,6 +18,7 @@ function myplugin_register_settings()
   register_setting('myplugin_options_group', 'cv_person_phone', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_linkedin', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_skype', 'myplugin_callback');
+  register_setting('myplugin_options_group', 'cv_person_location', 'myplugin_callback');
   register_setting('myplugin_options_group', 'cv_person_picture', 'myplugin_callback');
 }
 
@@ -112,6 +114,12 @@ function myplugin_options_page()
           <th scope="row"><label for="cv_person_skype"><?php _e('Skype:', 'cv_domain'); ?></label></th>
           <td>
             <input class="large-text" type="text" id="cv_person_skype" name="cv_person_skype" value="<?php echo get_option('cv_person_skype'); ?>" />
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row"><label for="cv_person_location"><?php _e('Location:', 'cv_domain'); ?></label></th>
+          <td>
+            <input class="large-text" type="text" id="cv_person_location" name="cv_person_location" value="<?php echo get_option('cv_person_location'); ?>" />
           </td>
         </tr>
       </table>
